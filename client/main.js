@@ -67,6 +67,27 @@ Template.eventTemplate.helpers({
 	}
 });
 
+Template.commentSubmitTemplate.events({
+	"click .event-submit-comment": function(event, template) {
+		debugger;
+		
+		var commentText = template.find('input[name=comment-text]');
+		console.log(commentText.value);
+		Comments.insert({
+			text: commentText.value,
+			creator: Meteor.user().username,
+			createdAt: new Date() // current time
+		});
+		commentText.value = "";
+	}
+});
+
+Template.commentListTemplate.helpers({
+	events: function() {
+		return Comments.find({});
+	}
+});
+
 Accounts.ui.config({
 	passwordSignupFields: "USERNAME_ONLY"
 });

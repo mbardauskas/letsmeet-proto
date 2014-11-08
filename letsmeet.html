@@ -35,10 +35,7 @@
     </div>
     {{/if}}
     {{#if currentUser}}
-    <div class="event-comment">
-        <input type="textarea">
-        <button>Comment</button>
-    </div>
+    {{> commentSubmitTemplate}}
     {{/if}}
     <div class="users">
         <div class="users-going">
@@ -64,10 +61,21 @@
 </template>
 
 <template name="commentListTemplate">
-    {{#each comments}} {{> commentTemplate}} {{/each}}
+    <ul>
+        {{#each comments}} {{> commentTemplate}} {{/each}}
+    </ul>
 </template>
 
 <template name="commentTemplate">
-    <div class="username">{{creator}}</div>
-    <div class="comment">{{text}}</div>
+    <li>
+        <div class="username">{{creator}}</div>
+        <div class="comment">{{text}}</div>
+    </li>
+</template>
+
+<template name="commentSubmitTemplate">
+    <div class="event-comment">
+        <input type="textarea" name="comment-text">
+        <button class="event-submit-comment">Comment</button>
+    </div>
 </template>
