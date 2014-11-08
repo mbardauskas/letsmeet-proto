@@ -1,0 +1,54 @@
+<head>
+    <title>Events for boys and girls</title>
+</head>
+
+<body>
+{{> loginButtons}}
+<h1>Let's meet!</h1>
+{{> eventFormTemplate}} {{> eventListTemplate}}
+</body>
+
+<template name="eventFormTemplate">
+    {{#if currentUser}}
+    <div class="new-event">
+        <input type="text" name="title" placeholder="Event title" />
+        <input type="textarea" name="description" placeholder="Event description" />
+        <button id="create-event">Create</button>
+    </div>
+    {{/if}}
+</template>
+<template name="eventListTemplate">
+    {{#each events}} {{> eventTemplate}} {{/each}}
+</template>
+<template name="eventTemplate">
+    <h1>{{title}}</h1>
+    <p>{{description}}</p>
+    {{> commentListTemplate}}
+    {{#if currentUser}}
+    <div class="rsvp">
+        <button class="rsvp-going">Going</button>
+        <button class="rsvp-maybe">Maybe</button>
+        <button class="rsvp-no">No-no</button>
+    </div>
+    {{/if}}
+    <div class="event-actions">
+        <button class="remove-event">Delete</button>
+    </div>
+    <div></div>
+    {{#if currentUser}}
+    <div class="event-comment">
+        <input type="textarea">
+        <button>Comment</button>
+    </div>
+    {{/if}}
+</template>
+
+
+<template name="commentListTemplate">
+    {{#each comments}} {{> commentTemplate}} {{/each}}
+</template>
+
+<template name="commentTemplate">
+    <div class="username">{{creator}}</div>
+    <div class="comment">{{text}}</div>
+</template>
