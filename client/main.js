@@ -74,9 +74,7 @@ Template.eventTemplate.helpers({
 });
 
 Template.commentSubmitTemplate.events({
-	"click .event-submit-comment": function(event, template) {
-		debugger;
-		
+	"click .event-submit-comment": function(event, template) {	
 		var commentText = template.find('input[name=comment-text]');
 		console.log(commentText.value);
 		Comments.insert({
@@ -89,7 +87,7 @@ Template.commentSubmitTemplate.events({
 });
 
 Template.commentListTemplate.helpers({
-	events: function() {
+	comments: function() {
 		return Comments.find({});
 	}
 });
