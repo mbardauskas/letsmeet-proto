@@ -37,6 +37,36 @@ Template.eventTemplate.events({
 	}
 });
 
+Template.eventTemplate.helpers({
+	usersGoing: function() {
+		var users = this.users;
+
+		return _.filter(users, function(user) {
+			if(user.type === RSVP.types.going) {
+				return user;
+			}
+		});
+	},
+	usersMaybeGoing: function() {
+		var users = this.users;
+
+		return _.filter(users, function(user) {
+			if(user.type === RSVP.types.maybe) {
+				return user;
+			}
+		});
+	},
+	usersNotGoing: function() {
+		var users = this.users;
+
+		return _.filter(users, function(user) {
+			if(user.type === RSVP.types.no) {
+				return user;
+			}
+		});
+	}
+});
+
 Accounts.ui.config({
 	passwordSignupFields: "USERNAME_ONLY"
 });

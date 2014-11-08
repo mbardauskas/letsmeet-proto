@@ -41,9 +41,21 @@
     </div>
     {{/if}}
     <div class="users">
-        <div class="users-going">{{#each users}} {{>userList}} {{/each}}</div>
-        <div class="users-maybe"></div>
-        <div class="users-no"></div>
+        <div class="users-going">
+            {{#each usersGoing}}
+                {{>userList}}
+            {{/each}}
+        </div>
+        <div class="users-maybe">
+            {{#each usersMaybeGoing}}
+                {{>userList}}
+            {{/each}}
+        </div>
+        <div class="users-no">
+            {{#each usersNotGoing}}
+                {{>userList}}
+            {{/each}}
+        </div>
     </div>
 </template>
 
