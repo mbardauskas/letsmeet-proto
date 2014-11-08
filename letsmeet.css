@@ -1,1 +1,21 @@
 /* CSS declarations go here */
+.event-form {
+	margin: 0 0 4em;
+}
+.event-login {
+	margin-bottom: 3em;
+}
+
+.event-item {
+	border: 1px solid #ccc;
+	margin: 0 0 3em;
+	padding: 1em;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+	margin-top: 0;
+}
+
+.users-list {
+	padding: 0.5em;
+}
