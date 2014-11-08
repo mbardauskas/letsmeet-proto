@@ -26,7 +26,6 @@
     </div>
     <h1>{{title}}</h1>
     <p>{{description}}</p>
-    {{> commentListTemplate}}
     {{#if currentUser}}
     <div class="rsvp">
         <button class="rsvp-going">Going</button>
@@ -35,7 +34,6 @@
     </div>
     {{/if}}
     {{#if currentUser}}
-    {{> commentSubmitTemplate}}
     {{/if}}
     <div class="users">
         <div class="users-going">
@@ -54,6 +52,8 @@
             {{/each}}
         </div>
     </div>
+    {{> commentSubmitTemplate}}
+    {{> commentListTemplate}}
 </template>
 
 <template name="userList">
@@ -68,8 +68,8 @@
 
 <template name="commentTemplate">
     <li>
-        <div class="username">{{creator}}</div>
-        <div class="comment">{{text}}</div>
+        <span class="username">{{creator}}: </span>
+        <span class="comment">{{text}}</span>
     </li>
 </template>
 
