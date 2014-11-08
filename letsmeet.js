@@ -7,20 +7,35 @@ RSVP = {
 		maybe: 1,
 		no: 0
 	},
-	setUserRSVP: function(rsvptype, event) {
-		var userId = Meteor.user()._id;
-		var currentEvent = Events.findOne(event._id);
-		if(typeof currentEvent.users === "undefined") {
-			currentEvent.users = {};
+	setUserRSVP: function(rsvptype, currentEvent) {
+		if(this.isUserAlreadyRsvped(currentEvent.users, Meteor.user()._id)) {
+			return;
 		}
-		currentEvent.users[userId] = {
+
+		if(typeof currentEvent.users === "undefined") {
+			currentEvent.users = [];
+		}
+
+		currentEvent.users.push({
+			user_id: Meteor.user()._id,
 			type: rsvptype,
 			username: Meteor.user().username
-		};
+		});
 
-		Events.update(event._id, currentEvent);
+		Events.update(currentEvent._id, currentEvent);
+	},
+	isUserAlreadyRsvped: function(users, user_id) {
+		if(typeof users === 'undefined') {
+			return false;
+		}
+		debugger;
+		for(var i = 0, j = users.length; i < j; i++) {
+			if(users[i]['user_id'] === user_id) {
+				return true;
+			}
+		}
+		return false;
 	}
-
 };
 
 // https://www.meteor.com/try/9

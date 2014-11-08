@@ -21,6 +21,9 @@
     {{#each events}} {{> eventTemplate}} {{/each}}
 </template>
 <template name="eventTemplate">
+    <div class="event-actions">
+        <button class="remove-event">Delete</button>
+    </div>
     <h1>{{title}}</h1>
     <p>{{description}}</p>
     {{> commentListTemplate}}
@@ -31,18 +34,23 @@
         <button class="rsvp-no">No-no</button>
     </div>
     {{/if}}
-    <div class="event-actions">
-        <button class="remove-event">Delete</button>
-    </div>
-    <div></div>
     {{#if currentUser}}
     <div class="event-comment">
         <input type="textarea">
         <button>Comment</button>
     </div>
     {{/if}}
+    <div class="users">
+        <div class="users-going">{{#each users}} {{>userList}} {{/each}}</div>
+        <div class="users-maybe"></div>
+        <div class="users-no"></div>
+    </div>
 </template>
 
+<template name="userList">
+    {{log this}}
+    <span class="users-username">{{username}}</span>
+</template>
 
 <template name="commentListTemplate">
     {{#each comments}} {{> commentTemplate}} {{/each}}
