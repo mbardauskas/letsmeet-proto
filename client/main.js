@@ -53,7 +53,7 @@ Template.commentSubmitTemplate.events({
 });
 
 Template.commentListTemplate.helpers({
-	events: function() {
+	comments: function() {
 		return Comments.find({});
 	}
 });
