@@ -9,11 +9,19 @@ RSVP = {
 			currentEvent.users = [];
 		}
 
-		currentEvent.users.push({
+		var eventUsers = _.filter(currentEvent.users, function(user) {
+			if(user.user_id !== Meteor.user()._id) {
+				return user;
+			}
+		});
+
+		eventUsers.push({
 			user_id: Meteor.user()._id,
 			type: rsvptype,
 			username: Meteor.user().username
 		});
+
+		currentEvent.users = eventUsers;
 
 		Events.update(currentEvent._id, currentEvent);
 	},
@@ -28,5 +36,8 @@ RSVP = {
 			}
 		}
 		return false;
+	},
+	isUserGoing: function() {
+
 	}
 };
