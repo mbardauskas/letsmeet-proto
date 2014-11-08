@@ -13,7 +13,10 @@ RSVP = {
 		if(typeof currentEvent.users === "undefined") {
 			currentEvent.users = {};
 		}
-		currentEvent.users[userId] = rsvptype;
+		currentEvent.users[userId] = {
+			type: rsvptype,
+			username: Meteor.user().username
+		};
 
 		Events.update(event._id, currentEvent);
 	}
