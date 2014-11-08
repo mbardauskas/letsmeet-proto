@@ -73,3 +73,7 @@ if (Meteor.isServer) {
 		// code to run on server at startup
 	});
 }
+
+Handlebars.registerHelper('log', function(value) {
+	console.log(value);
+});
