@@ -21,9 +21,11 @@
     {{#each events}} {{> eventTemplate}} {{/each}}
 </template>
 <template name="eventTemplate">
+    {{#if isCurrentUserCreator}}
     <div class="event-actions">
         <button class="remove-event">Delete</button>
     </div>
+    {{/if}}
     <h1>{{title}}</h1>
     <p>{{description}}</p>
     {{#if currentUser}}

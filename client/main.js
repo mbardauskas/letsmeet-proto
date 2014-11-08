@@ -14,7 +14,7 @@ Template.eventFormTemplate.events({
 		Events.insert({
 			title: title.value,
 			description: description.value,
-			creator: Meteor.user().username,
+			creatorId: Meteor.user()._id,
 			createdAt: new Date() // current time
 		});
 		title.value = "";
@@ -38,6 +38,12 @@ Template.eventTemplate.events({
 });
 
 Template.eventTemplate.helpers({
+	isCurrentUserCreator: function() {
+		if(this.creatorId === Meteor.user()._id) {
+			return true;
+		}
+		return false;
+	},
 	usersGoing: function() {
 		var users = this.users;
 
